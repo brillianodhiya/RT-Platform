@@ -7,10 +7,15 @@ import {
   Collapsible,
   ResponsiveContext,
   Layer,
-  Clock
+  Clock,
+  Footer,
+  Text,
+  Anchor
 } from "grommet";
 import { FormClose, Menu, Deploy } from "grommet-icons";
 import Routes from "../routes";
+import SidebarContent from "../components/Sidebar";
+import SidebarContentMobile from "../components/SideBarMobile";
 import "antd/dist/antd.css";
 
 const theme = {
@@ -21,7 +26,7 @@ const theme = {
       height: "20px"
     },
     colors: {
-      // brand: "#228BE6"
+      brand: "#228BE6"
     } //rubah default color
   }
 };
@@ -47,7 +52,7 @@ class Layout extends React.Component {
   render() {
     const { showSidebar } = this.state;
     return (
-      <Grommet theme={theme} full themeMode="dark">
+      <Grommet theme={theme} full plain>
         <ResponsiveContext.Consumer>
           {size => (
             <Box fill>
@@ -79,12 +84,14 @@ class Layout extends React.Component {
                     <Box
                       flex
                       width="medium"
-                      background="light-2"
+                      background="light"
                       elevation="small"
                       align="center"
-                      justify="center"
+                      fill
+                      //   align="center"
+                      //   justify="center"
                     >
-                      SideBar
+                      <SidebarContent />
                     </Box>
                   </Collapsible>
                 ) : (
@@ -104,10 +111,10 @@ class Layout extends React.Component {
                     <Box
                       fill
                       background="light-2"
-                      align="center"
-                      justify="center"
+                      //   align="center"
+                      //   justify="center"
                     >
-                      SideBar
+                      <SidebarContentMobile />
                     </Box>
                   </Layer>
                 )}
@@ -115,6 +122,10 @@ class Layout extends React.Component {
             </Box>
           )}
         </ResponsiveContext.Consumer>
+        <Footer pad="small" background="brand">
+          <Text>© Copyright by Brilliano</Text>
+          <Anchor label="Brilli" href="http://bit.ly/2LZlAUa" />
+        </Footer>
       </Grommet>
     );
   }
