@@ -18,19 +18,6 @@ import SidebarContent from "../components/Sidebar";
 import SidebarContentMobile from "../components/SideBarMobile";
 import "antd/dist/antd.css";
 
-const theme = {
-  global: {
-    font: {
-      family: "Roboto",
-      size: "18px",
-      height: "20px"
-    },
-    colors: {
-      brand: "#228BE6"
-    } //rubah default color
-  }
-};
-
 const AppBar = props => (
   <Box
     tag="header"
@@ -46,13 +33,39 @@ const AppBar = props => (
 );
 
 class Layout extends React.Component {
-  state = {
-    showSidebar: false
+  constructor() {
+    super();
+    this.state = {
+      showSidebar: false,
+      baseColor: "#228BE6"
+    };
+  }
+
+  onChangeBaseColor = color => {
+    this.setState({
+      baseColor: color
+    });
   };
+
   render() {
     const { showSidebar } = this.state;
     return (
-      <Grommet theme={theme} full plain>
+      <Grommet
+        theme={{
+          global: {
+            font: {
+              family: "Roboto",
+              size: "18px",
+              height: "20px"
+            },
+            colors: {
+              brand: this.state.baseColor
+            }
+          }
+        }}
+        full
+        plain
+      >
         <ResponsiveContext.Consumer>
           {size => (
             <Box fill>
@@ -91,7 +104,7 @@ class Layout extends React.Component {
                       //   align="center"
                       //   justify="center"
                     >
-                      <SidebarContent />
+                      <SidebarContent onChangeColor={this.onChangeBaseColor} />
                     </Box>
                   </Collapsible>
                 ) : (
