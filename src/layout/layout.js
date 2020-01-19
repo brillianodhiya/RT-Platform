@@ -36,7 +36,7 @@ class Layout extends React.Component {
   constructor() {
     super();
     this.state = {
-      showSidebar: false,
+      showSidebar: true,
       baseColor: "#228BE6"
     };
   }
@@ -60,6 +60,12 @@ class Layout extends React.Component {
             },
             colors: {
               brand: this.state.baseColor
+            },
+            animation: {
+              duration: "1s",
+              jiggle: {
+                duration: "0.1s"
+              }
             }
           }
         }}
@@ -76,7 +82,7 @@ class Layout extends React.Component {
                   color="#fff"
                   style={{ display: "inline-flex" }}
                 >
-                  <Deploy /> &nbsp; RT 20 RW 05 Trenggalek
+                  <Deploy /> &nbsp; Trenggalek Dev Platform
                 </Heading>
                 <Clock type="digital" />
                 <Button
